@@ -13,8 +13,28 @@ import React, { useState } from 'react';
 // 1.) React -> Default Export
 // 2.) useState -> Named Export
 
+// class Playground extends Component {
+//   constructor(props) {
+//     this.state = {
+//       count: 0,
+//       spinner: false
+//     }
+//   }
+
+//   setCount = () => {
+//     this.setState({
+//       count: blah
+//     })
+//   }
+//   setSpinner = () => {}
+// }
+
 function Playground(props) {
   const [count, setCount] = useState(0);
+  const [spinner, setSpinner] = useState(false);
+  const [weapon, setWeapon] = useState("scissors");
+  const [winner, setWinner] = useState(null);
+
   // Never, ever, ever, ever, ever, ever mutate state directly!
 
   const updateCount = (num) => {
@@ -24,12 +44,45 @@ function Playground(props) {
     setCount(count + num);
   }
 
+  const userChoice = (choice) => {
+    setWeapon(choice);
+    // grab a random num between 0 - 2 -> select a weapon from an array...
+    const compChoice = ["scissors", "rock", "paper"][Math.floor(Math.random() * 3)];
+    if (choice === "rock" && compChoice === "scissors") {
+      console.log("User wins!")
+    } else if (choice === "paper" && compChoice === "rock") {
+      console.log("User wins!");
+    } else if (choice === "scissors" && compChoice === "paper") {
+      console.log("User wins!");
+    } else if (choice === compChoice) {
+      console.log("TIE");
+    }else {
+      console.log("Computer wins!");
+    }
+  }
+
+  if (spinner) {
+    return (
+      <div className="container">
+        <h3>LOADING....</h3>
+        <button onClick={() => setSpinner(false)}>LOADING DONE</button>
+      </div>
+    )
+  }
+
   return (
-    <div>
+    <div className="container">
       { props.cohort === '55' ? <p>The best cohort!</p> : <p>Laaaaame!</p> }
       {count}
       <button onClick={() => updateCount(1)}>Increment</button>
       <button onClick={() => updateCount(-1)}>Decrement</button>
+      <button onClick={() => setSpinner(!spinner)}>
+        {spinner ? "Turn it off!" : "Turn it on!"}
+      </button>
+      <h3>The current choice is: {weapon[0].toUpperCase() + weapon.substring(1)}</h3>
+      <button onClick={() => userChoice('scissors')}>Pick scissors</button>
+      <button onClick={() => userChoice('rock')}>Pick rock</button>
+      <button onClick={() => userChoice('paper')}>Pick paper</button>
     </div>
   )
 }

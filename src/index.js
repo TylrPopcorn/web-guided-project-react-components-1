@@ -35,6 +35,7 @@ function App(props) {
       {/** const name = `My name is ${name}` */}
       { props.happy ? <p>I'm soooooo happy!</p> : <p>Monday's are the worst....</p> }
       <Playground cohort='55' />
+      {/** Playground(props); */}
     </div>
   )
 }

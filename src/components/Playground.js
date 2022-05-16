@@ -49,15 +49,15 @@ function Playground(props) {
     // grab a random num between 0 - 2 -> select a weapon from an array...
     const compChoice = ["scissors", "rock", "paper"][Math.floor(Math.random() * 3)];
     if (choice === "rock" && compChoice === "scissors") {
-      console.log("User wins!")
+      setWinner("User wins!")
     } else if (choice === "paper" && compChoice === "rock") {
-      console.log("User wins!");
+      setWinner("User wins!");
     } else if (choice === "scissors" && compChoice === "paper") {
-      console.log("User wins!");
+      setWinner("User wins!");
     } else if (choice === compChoice) {
-      console.log("TIE");
+      setWinner("TIE");
     }else {
-      console.log("Computer wins!");
+      setWinner("Computer wins!");
     }
   }
 
@@ -79,7 +79,7 @@ function Playground(props) {
       <button onClick={() => setSpinner(!spinner)}>
         {spinner ? "Turn it off!" : "Turn it on!"}
       </button>
-      <h3>The current choice is: {weapon[0].toUpperCase() + weapon.substring(1)}</h3>
+      {winner && <h3>{winner}</h3>}
       <button onClick={() => userChoice('scissors')}>Pick scissors</button>
       <button onClick={() => userChoice('rock')}>Pick rock</button>
       <button onClick={() => userChoice('paper')}>Pick paper</button>

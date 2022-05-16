@@ -47,7 +47,12 @@ function Playground(props) {
   const userChoice = (choice) => {
     setWeapon(choice);
     // grab a random num between 0 - 2 -> select a weapon from an array...
-    const compChoice = ["scissors", "rock", "paper"][Math.floor(Math.random() * 3)];
+    const arr = ["scissors", "rock", "paper"];
+    const num = Math.floor(Math.random() * 3)
+    const compChoice = arr[num];
+
+    // const compChoice = ["scissors", "rock", "paper"][Math.floor(Math.random() * 3)]; <== shorthand version of 50-52
+
     if (choice === "rock" && compChoice === "scissors") {
       setWinner("User wins!")
     } else if (choice === "paper" && compChoice === "rock") {

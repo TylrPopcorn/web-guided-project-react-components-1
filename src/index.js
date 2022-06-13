@@ -1,6 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 
+import Playground from "./components/Playground"
+
 /*
 💥💥💥 Rules when DECLARING a React component 💥💥💥
   - Name is capitalized
@@ -22,14 +24,21 @@ import { render } from 'react-dom'
 */
 
 function App(props) {
+  const { track, happy } = props
+  //const track = props.track;
+  //const happy = props.happy;
   return (
     <div className='container'>
-      <h1>Welcome to React, {props.track} rockstars!!</h1>
+      <h1>Welcome to React, {track} rockstars!!</h1>
+      <p> Your Instrucctor's name is: {props.name}</p>
+      {props.happy ? <p>I AM HAPPY</p> : <p>I AM NOT HAPPY</p>}
+      <Playground />
+
     </div>
   )
 }
-
+//Props are data passed from a parent component to a child
 render(
-  <App track='Web' />,
+  <App track='Web' name="Casey" happy={true} />,
   document.querySelector('#root')
 )
